@@ -16,7 +16,7 @@
 
 - `eem_remove_scattering()` no longer `tolower` absorbance names and will assume that the provided absorbance spectra match exactly EEM's names.
 
-- Fixing a bug that prevented the interactive plot to work properly. 
+- Fixing a bug that prevented the interactive plot to work properly.
 
 - `summary(x)` and `print(x)` now return a data frame containing summarized information on EEMs contained in `x`. See `?summary.eemlist`.
 
@@ -28,7 +28,7 @@
 
 - `eem_remove_blank()` and `eem_raman_normalisation()` will now keep blank samples when automatic correction is used. When automatic correction is used, the *untransformed* blank sample will be keep in the list.
 
-- An error will now occur if trying to perform blank correction after Raman normalization. 
+- An error will now occur if trying to perform blank correction after Raman normalization.
 
 # eemR 0.1.3
 
@@ -42,7 +42,7 @@
 
 - Reading Aqualog files is now ~20% faster (#26).
 
-- `plot()` gains an argument `show_peaks = TRUE/FALSE` which can be used to display most common fluorescence peaks used in the literature. 
+- `plot()` gains an argument `show_peaks = TRUE/FALSE` which can be used to display most common fluorescence peaks used in the literature.
 
 - `eem_remove_blank()` and `eem_raman_normalisation()` can now try to implicitly use a blank eem from a `eemlist` object (#20). If blank is omitted (`blank = NA`), the functions will try to extract the blank from the `eemlist` object. This is done by looking for sample names containing one of these complete or partial strings (ignoring case):
       - "nano"
