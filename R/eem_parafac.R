@@ -162,8 +162,9 @@ plot_component <- function(df) {
 
   # Surface plot
 
-  p3d <- ggplot(components, aes_string(x = "ex", y = "em", fill = "fluo")) +
+  p3d <- ggplot(components, aes_string(x = "ex", y = "em", fill = "fluo", z = "fluo")) +
     geom_raster(interpolate = FALSE) +
+    geom_contour(colour = "black", size = 0.15) +
     viridis::scale_fill_viridis(256) +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0)) +
