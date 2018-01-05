@@ -4,6 +4,8 @@
 
 - Can now read Cary eclipse data separated either by "," or ";".
 
+- eemR now do not change sample names. Before `make.name` was used to construct the sample name attribute. Now it is only using the filename without the extension.
+
 # eemR 0.1.4
 
 - `eem_extract()` is now more intuitive to use. `remove` argument has been replace by `keep`. If `TRUE`, the specified samples will be returned. If `FALSE`, they will be removed (#37).
