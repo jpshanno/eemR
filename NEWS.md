@@ -1,6 +1,8 @@
 # eemR 0.1.5 (unreleased)
 
-- New functions `eem_read_parafac()`, `eem_plot_parafac()` and `eem_fmax_parafac()` to work with restults from PARAFAC models created with the `drEEM` Matlab toolbox. Use `vignette(topic = "parafac", package = "eemR")` for mode details
+- New functions `eem_read_parafac()`, `eem_plot_parafac()` and `eem_fmax_parafac()` to work with restults from PARAFAC models created with the `drEEM` Matlab toolbox. Use `vignette(topic = "parafac", package = "eemR")` for mode details.
+
+- Can now read Cary eclipse data separated either by "," or ";".
 
 # eemR 0.1.4
 
