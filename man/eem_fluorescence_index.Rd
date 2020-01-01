@@ -4,12 +4,14 @@
 \alias{eem_fluorescence_index}
 \title{Calculate the fluorescence index (FI)}
 \usage{
-eem_fluorescence_index(eem, verbose = TRUE)
+eem_fluorescence_index(eem, verbose = TRUE, emission_range = "470-520")
 }
 \arguments{
 \item{eem}{An object of class \code{eemlist}.}
 
 \item{verbose}{Logical determining if additional messages should be printed.}
+
+\item{emission_range}{A string with either "450-500" or "470-520" indicating over which emission wavelengths the fluorescence index should be calculated.}
 }
 \value{
 An object of class \code{eemlist}.
@@ -38,6 +40,8 @@ eem_fluorescence_index(eem)
 }
 \references{
 \url{http://doi.wiley.com/10.4319/lo.2001.46.1.0038}
+\url{https://pubs.acs.org/doi/10.1021/es0506962}
+\url{https://aslopubs.onlinelibrary.wiley.com/doi/epdf/10.4319/lom.2010.8.67}
 }
 \seealso{
 \link[pracma]{interp2}

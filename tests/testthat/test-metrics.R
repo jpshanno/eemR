@@ -20,7 +20,7 @@ test_that("Test Cobble's peaks", {
 })
 
 test_that("Test fluorescence index (FI)", {
-  metrics <- eem_fluorescence_index(eems, verbose = FALSE)
+  metrics <- eem_fluorescence_index(eems, verbose = FALSE, emission_range = "450-500")
 
   fi <- 1.124091625 / 0.888762951
 

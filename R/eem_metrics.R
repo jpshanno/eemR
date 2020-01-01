@@ -9,11 +9,15 @@ msg_warning_wavelength <- function() {
 
 #' Calculate the fluorescence index (FI)
 #'
+#' @param emission_range A string with either "450-500" or "470-520" indicating over which emission wavelengths the fluorescence index should be calculated.
 #' @template template_eem
 #'
 #' @template template_section_interp2
 #'
-#' @references \url{http://doi.wiley.com/10.4319/lo.2001.46.1.0038}
+#' @references
+#' \url{http://doi.wiley.com/10.4319/lo.2001.46.1.0038}
+#' \url{https://pubs.acs.org/doi/10.1021/es0506962}
+#' \url{https://aslopubs.onlinelibrary.wiley.com/doi/epdf/10.4319/lom.2010.8.67}
 #'
 #' @return A data frame containing fluorescence index (FI) for each eem.
 #' @export
@@ -22,25 +26,41 @@ msg_warning_wavelength <- function() {
 #' eem <- eem_read(file, import_function = "cary")
 #'
 #' eem_fluorescence_index(eem)
-eem_fluorescence_index <- function(eem, verbose = TRUE) {
+eem_fluorescence_index <- function(eem, verbose = TRUE, emission_range = "470-520") {
+
+  emission_range <- match.arg(emission_range, choices = c("450-500", "470-520"))
+
+  # Chose "old" emission wavelength (450-500 nm) from McKight et al., 2001 or the new proposed emission wavelength (470-520 nm) form Cory and McKnight 2005.
+  switch(
+    emission_range,
+    "450-500" = {
+      min_em <- 450
+      max_em <- 500
+    },
+    "470-520" = {
+      min_em <- 470
+      max_em <- 520
+    }
+  )
+
   stopifnot(.is_eemlist(eem) | .is_eem(eem))
 
   ## It is a list of eems, then call lapply
   if (.is_eemlist(eem)) {
-    res <- lapply(eem, eem_fluorescence_index, verbose = verbose)
+    res <- lapply(eem, eem_fluorescence_index, verbose = verbose, emission_range = emission_range)
     res <- dplyr::bind_rows(res)
 
     return(res)
   }
 
-  if (!all(370 %in% eem$ex & c(450, 500) %in% eem$em) & verbose) {
+  if (!all(370 %in% eem$ex & c(min_em, max_em) %in% eem$em) & verbose) {
     warning(msg_warning_wavelength(), call. = FALSE)
   }
 
-  fluo_450 <- pracma::interp2(eem$ex, eem$em, eem$x, 370, 450)
-  fluo_500 <- pracma::interp2(eem$ex, eem$em, eem$x, 370, 500)
+  fluo_min_em <- pracma::interp2(eem$ex, eem$em, eem$x, 370, min_em)
+  fluo_max_em <- pracma::interp2(eem$ex, eem$em, eem$x, 370, max_em)
 
-  fi <- fluo_450 / fluo_500
+  fi <- fluo_min_em / fluo_max_em
 
   return(data.frame(sample = eem$sample, fi = fi, stringsAsFactors = FALSE))
 }
