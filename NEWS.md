@@ -1,8 +1,10 @@
 # eemR (development version)
 
 - Correction functions do not modify the name of the eem (#53 #56).
+
 - `eem_humification_index()` now ignore missing values (for example due to scattering removal) in the calculation.
 
+- The fluorescence index (FI) can be calculated using two different set of wavelengths (450-500 nm or 470-520 nm). The 450-500 nm was first developed in McKight et al., 2001 whereas 470-520 nm was proposed in Cory and McKnight 2005. The default is now to use 470-520 nm (#62). Thanks to @MorimaruKida for the hints. 
 # eemR 1.0.1
 
 - Fixing the file location that was not following when creating eems (#52).
