@@ -34,9 +34,9 @@
 #' plot(eem)
 eem_remove_scattering <-
   function(eem,
-             type,
-             order = 1,
-             width = 10) {
+           type,
+           order = 1,
+           width = 10) {
     stopifnot(
       .is_eemlist(eem) | .is_eem(eem),
       all(type %in% c("raman", "rayleigh")),
@@ -69,9 +69,9 @@ eem_remove_scattering <-
 
 eem_remove_scattering_ <-
   function(eem,
-             type,
-             order = 1,
-             width = 10) {
+           type,
+           order = 1,
+           width = 10) {
     x <- eem$x
     em <- eem$em
     ex <- eem$ex
@@ -80,10 +80,12 @@ eem_remove_scattering_ <-
       ex <- .find_raman_peaks(eem$ex)
     }
 
-    ind1 <- mapply(function(x)
-      em <= x, order * ex - width)
-    ind2 <- mapply(function(x)
-      em <= x, order * ex + width)
+    ind1 <- mapply(function(x) {
+      em <= x
+    }, order * ex - width)
+    ind2 <- mapply(function(x) {
+      em <= x
+    }, order * ex + width)
 
     ind3 <- ifelse(ind1 + ind2 == 1, NA, 1)
 

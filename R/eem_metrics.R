@@ -27,7 +27,6 @@ msg_warning_wavelength <- function() {
 #'
 #' eem_fluorescence_index(eem)
 eem_fluorescence_index <- function(eem, verbose = TRUE, emission_range = "470-520") {
-
   emission_range <- match.arg(emission_range, choices = c("450-500", "470-520"))
 
   # Chose "old" emission wavelength (450-500 nm) from McKight et al., 2001 or the new proposed emission wavelength (470-520 nm) form Cory and McKnight 2005.

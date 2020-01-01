@@ -121,7 +121,8 @@ eem_raman_normalisation_ <- function(eem, blank = NA) {
 
   if (any(is.na(em)) | any(is.na(fluo))) {
     stop("NA values found in the blank sample. Maybe you removed scattering too soon?",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   area <- sum(diff(em) * (fluo[-length(fluo)] + fluo[-1]) / 2)
